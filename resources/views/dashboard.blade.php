@@ -6,10 +6,27 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('success') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                    @endif
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ route('image.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                  <label for="exampleFormControlFile1">Example file input</label>
+                                  <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                                    <button name="submit" class="btn btn-primary mt-4">Submit</button>
+                                </div>
+                              </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
